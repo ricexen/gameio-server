@@ -1,0 +1,35 @@
+{
+  "name": "gameio-server",
+  "version": "0.0.1",
+  "description": "This is a server to create an GraphQL API architecture to the Game.io service",
+  "main": "index.js",
+  "scripts": {
+    "start": "tsc && node ./src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ricexen/gameio-server.git"
+  },
+  "keywords": [
+    "game",
+    "videogames",
+    "service",
+    "architecture",
+    "graphql",
+    "typescript",
+    ".io"
+  ],
+  "author": "Christian Camacho",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ricexen/gameio-server/issues"
+  },
+  "homepage": "https://github.com/ricexen/gameio-server#readme",
+  "dependencies": {
+    "@types/node": "^12.0.2",
+    "sqlite3": "^4.0.8",
+    "typeorm": "^0.2.17",
+    "vesper": "^0.1.9"
+  }
+}

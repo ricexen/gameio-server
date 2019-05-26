@@ -1,0 +1,12 @@
+type User {
+  id: String
+  username: String
+  email: String
+  phone: String
+  name: String
+}
+
+type UserRegistered {
+  id: String
+  username: String
+}
