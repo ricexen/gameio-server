@@ -1,5 +1,5 @@
 Arguments: 
-  P:\nodejs\node.exe S:\AppData\npm\node_modules\yarn\bin\yarn.js start
+  P:\nodejs\node.exe S:\AppData\npm\node_modules\yarn\bin\yarn.js add @type/bcrypt
 
 PATH: 
   P:\Git\mingw64\bin;P:\Git\usr\bin;C:\Users\xenty\bin;C:\ProgramData\Oracle\Java\javapath;C:\Program Files (x86)\Common Files\Intel\Shared Libraries\redist\intel64\compiler;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0;C:\Windows\System32\OpenSSH;P:\Git\cmd;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\ProgramData\ComposerSetup\bin;P:\Gource\cmd;C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR;P:\HashiCorp\Vagrant\bin;P:\nodejs;C:\Users\xenty\AppData\Local\Programs\Python\Python37-32\Scripts;C:\Users\xenty\AppData\Local\Programs\Python\Python37-32;%USERPROFILE%\AppData\Local\Microsoft\WindowsApps;P:\Microsoft VS Code\bin;P:\heroku\bin;P:\xampp\php;S:\AppData\Composer\vendor\bin;C:\testing-drivers;%WebStorm%;P:\Meld\bin;S:\AppData\npm;C:\Users\xenty\AppData\Local\hyper\app-3.0.2\resources\bin
@@ -14,12 +14,17 @@ Platform:
   win32 x64
 
 Trace: 
-  SyntaxError: F:\projects\gameio-server\package.json: Unexpected token } in JSON at position 994
-      at JSON.parse (<anonymous>)
-      at S:\AppData\npm\node_modules\yarn\lib\cli.js:1625:59
-      at Generator.next (<anonymous>)
-      at step (S:\AppData\npm\node_modules\yarn\lib\cli.js:304:30)
-      at S:\AppData\npm\node_modules\yarn\lib\cli.js:315:13
+  Error: https://registry.yarnpkg.com/@type%2fbcrypt: Not found
+      at Request.params.callback [as _callback] (S:\AppData\npm\node_modules\yarn\lib\cli.js:66058:18)
+      at Request.self.callback (S:\AppData\npm\node_modules\yarn\lib\cli.js:129541:22)
+      at Request.emit (events.js:189:13)
+      at Request.<anonymous> (S:\AppData\npm\node_modules\yarn\lib\cli.js:130513:10)
+      at Request.emit (events.js:189:13)
+      at IncomingMessage.<anonymous> (S:\AppData\npm\node_modules\yarn\lib\cli.js:130435:12)
+      at Object.onceWrapper (events.js:277:13)
+      at IncomingMessage.emit (events.js:194:15)
+      at endReadableNT (_stream_readable.js:1125:12)
+      at process._tickCallback (internal/process/next_tick.js:63:19)
 
 npm manifest: 
   {
@@ -28,7 +33,7 @@ npm manifest:
     "description": "This is a server to create an GraphQL API architecture to the Game.io service",
     "main": "index.js",
     "scripts": {
-      "start": "concurrently --kill-others \"tsc -w\" \"nodemon dist/app.js\"",
+      "start": "./node_modules/.bin/ts-nodemon --entry ./src/index.js",
       "test": "echo \"Error: no test specified\" && exit 1"
     },
     "repository": {
@@ -52,14 +57,15 @@ npm manifest:
     "homepage": "https://github.com/ricexen/gameio-server#readme",
     "dependencies": {
       "@types/node": "^12.0.2",
+      "bcrypt": "^3.0.6",
       "sqlite3": "^4.0.8",
       "typeorm": "^0.2.17",
       "vesper": "^0.1.9"
     },
     "devDependencies": {
-      "concurrently": "^2.2.0",
-      "typescript": "^1.8.10",
-      "nodemon": "^1.9.2",
+      "@trongnd/ts-nodemon": "^1.0.3",
+      "ts-node": "^8.2.0",
+      "typescript": "^3.4.5"
     }
   }
 
@@ -77,6 +83,16 @@ Lockfile:
     integrity sha512-TuI4qpWZP6lGOGIuGWtp9sPluqYICmbk8T/1vpSysqJxRPkudh/ofFWyqdcMsDf2s7KvDL4/YHgKyvcS3g9CJQ==
     dependencies:
       regenerator-runtime "^0.13.2"
+  
+  "@trongnd/ts-nodemon@^1.0.3":
+    version "1.0.3"
+    resolved "https://registry.yarnpkg.com/@trongnd/ts-nodemon/-/ts-nodemon-1.0.3.tgz#7d6eb90ee55ef7bc8fe76ac282a95cf433c9853b"
+    integrity sha512-iKbBXbB367s6CtKrRjHx3HEMP5Mt90AeqGgxGVUhRjHWOe/gFHB7tAhEuo9HSlhauptI8AhkE4F4spoFEdzGzA==
+    dependencies:
+      chalk "^2.4.1"
+      minimist "^1.2.0"
+      node-notifier "^5.2.1"
+      tree-kill "^1.2.0"
   
   "@types/body-parser@*", "@types/body-parser@^1.16.8":
     version "1.17.0"
@@ -334,6 +350,11 @@ Lockfile:
       delegates "^1.0.0"
       readable-stream "^2.0.6"
   
+  arg@^4.1.0:
+    version "4.1.0"
+    resolved "https://registry.yarnpkg.com/arg/-/arg-4.1.0.tgz#583c518199419e0037abb74062c37f8519e575f0"
+    integrity sha512-ZWc51jO3qegGkVh8Hwpv636EkbesNV5ZNQPCtRa+0qytRYPEs9IYT9qITY9buezqUH5uqyzlWLcufrzU2rffdg==
+  
   argparse@^1.0.7:
     version "1.0.10"
     resolved "https://registry.yarnpkg.com/argparse/-/argparse-1.0.10.tgz#bcd6791ea5ae09725e17e5ad988134cd40b3d911"
@@ -412,6 +433,14 @@ Lockfile:
     integrity sha1-pDAdOJtqQ/m2f/PKEaP2Y342Dp4=
     dependencies:
       tweetnacl "^0.14.3"
+  
+  bcrypt@^3.0.6:
+    version "3.0.6"
+    resolved "https://registry.yarnpkg.com/bcrypt/-/bcrypt-3.0.6.tgz#f607846df62d27e60d5e795612c4f67d70206eb2"
+    integrity sha512-taA5bCTfXe7FUjKroKky9EXpdhkVvhE5owfxfLYodbrAR1Ul3juLmIQmIQBK4L9a5BuUcE6cqmwT+Da20lF9tg==
+    dependencies:
+      nan "2.13.2"
+      node-pre-gyp "0.12.0"
   
   body-parser@1.19.0, body-parser@^1.18.2:
     version "1.19.0"
@@ -524,7 +553,7 @@ Lockfile:
       strip-ansi "^3.0.0"
       supports-color "^2.0.0"
   
-  chalk@^2.3.0, chalk@^2.4.2:
+  chalk@^2.3.0, chalk@^2.4.1, chalk@^2.4.2:
     version "2.4.2"
     resolved "https://registry.yarnpkg.com/chalk/-/chalk-2.4.2.tgz#cd42541677a54333cf541a49108c1432b44c9424"
     integrity sha512-Mti+f9lpJNcwF4tWV8/OrTTtF1gZi+f8FqlyAdouralcFWFQWF2+NgCHShjkCb+IFBLq9buZwE1xckQU4peSuQ==
@@ -818,6 +847,11 @@ Lockfile:
     dependencies:
       readable-stream "1.1.x"
       streamsearch "0.1.2"
+  
+  diff@^4.0.1:
+    version "4.0.1"
+    resolved "https://registry.yarnpkg.com/diff/-/diff-4.0.1.tgz#0c667cb467ebbb5cea7f14f135cc2dba7780a8ff"
+    integrity sha512-s2+XdvhPCOF01LRQBC8hf4vhbVmI2CGS5aZnxLJlT5FtdhPCDFq80q++zK2KlrVorVDdL5BOGZ/VfLrVtYNF+Q==
   
   dot-case@^2.1.0:
     version "2.1.1"
@@ -1245,6 +1279,11 @@ Lockfile:
     dependencies:
       iterall "^1.2.1"
   
+  growly@^1.3.0:
+    version "1.3.0"
+    resolved "https://registry.yarnpkg.com/growly/-/growly-1.3.0.tgz#f10748cbe76af964b7c96c93c6bcc28af120c081"
+    integrity sha1-8QdIy+dq+WS3yWyTxrzCivEgwIE=
+  
   handlebars@4.0.11:
     version "4.0.11"
     resolved "https://registry.yarnpkg.com/handlebars/-/handlebars-4.0.11.tgz#630a35dfe0294bc281edae6ffc5d329fc7982dcc"
@@ -1475,6 +1514,11 @@ Lockfile:
     dependencies:
       upper-case "^1.1.0"
   
+  is-wsl@^1.1.0:
+    version "1.1.0"
+    resolved "https://registry.yarnpkg.com/is-wsl/-/is-wsl-1.1.0.tgz#1f16e4aa22b04d1336b66188a66af3c600c3a66d"
+    integrity sha1-HxbkqiKwTRM2tmGIpmrzxgDDpm0=
+  
   isarray@0.0.1:
     version "0.0.1"
     resolved "https://registry.yarnpkg.com/isarray/-/isarray-0.0.1.tgz#8a18acfca9a8f4177e09abfc6038939b05d1eedf"
@@ -1614,6 +1658,11 @@ Lockfile:
     dependencies:
       pseudomap "^1.0.2"
       yallist "^2.1.2"
+  
+  make-error@^1.1.1:
+    version "1.3.5"
+    resolved "https://registry.yarnpkg.com/make-error/-/make-error-1.3.5.tgz#efe4e81f6db28cadd605c70f29c831b58ef776c8"
+    integrity sha512-c3sIjNUow0+8swNwVpqoH4YCShKNFkMaw6oH1mNS2haDZQqkeZFlHS3dhoeEbKKmJB4vXpJucU6oH75aDYeE9g==
   
   map-age-cleaner@^0.1.1:
     version "0.1.3"
@@ -1757,6 +1806,11 @@ Lockfile:
       object-assign "^4.0.1"
       thenify-all "^1.0.0"
   
+  nan@2.13.2:
+    version "2.13.2"
+    resolved "https://registry.yarnpkg.com/nan/-/nan-2.13.2.tgz#f51dc7ae66ba7d5d55e1e6d4d8092e802c9aefe7"
+    integrity sha512-TghvYc72wlMGMVMluVo9WRJc0mB8KxxF/gZ4YYFy7V2ZQX9l7rgbPg7vjS9mt6U5HXODVFVI2bOduCzwOMv/lw==
+  
   nan@^2.12.1:
     version "2.14.0"
     resolved "https://registry.yarnpkg.com/nan/-/nan-2.14.0.tgz#7818f722027b2459a86f0295d434d1fc2336c52c"
@@ -1787,6 +1841,33 @@ Lockfile:
     integrity sha512-rmTZ9kz+f3rCvK2TD1Ue/oZlns7OGoIWP4fc3llxxRXlOkHKoWPPWJOfFYpITabSow43QJbRIoHQXtt10VldyQ==
     dependencies:
       lower-case "^1.1.1"
+  
+  node-notifier@^5.2.1:
+    version "5.4.0"
+    resolved "https://registry.yarnpkg.com/node-notifier/-/node-notifier-5.4.0.tgz#7b455fdce9f7de0c63538297354f3db468426e6a"
+    integrity sha512-SUDEb+o71XR5lXSTyivXd9J7fCloE3SyP4lSgt3lU2oSANiox+SxlNRGPjDKrwU1YN3ix2KN/VGGCg0t01rttQ==
+    dependencies:
+      growly "^1.3.0"
+      is-wsl "^1.1.0"
+      semver "^5.5.0"
+      shellwords "^0.1.1"
+      which "^1.3.0"
+  
+  node-pre-gyp@0.12.0:
+    version "0.12.0"
+    resolved "https://registry.yarnpkg.com/node-pre-gyp/-/node-pre-gyp-0.12.0.tgz#39ba4bb1439da030295f899e3b520b7785766149"
+    integrity sha512-4KghwV8vH5k+g2ylT+sLTjy5wmUOb9vPhnM8NHvRf9dHmnW/CndrFXy2aRPaPST6dugXSdHXfeaHQm77PIz/1A==
+    dependencies:
+      detect-libc "^1.0.2"
+      mkdirp "^0.5.1"
+      needle "^2.2.1"
+      nopt "^4.0.1"
+      npm-packlist "^1.1.6"
+      npmlog "^4.0.2"
+      rc "^1.2.7"
+      rimraf "^2.6.1"
+      semver "^5.3.0"
+      tar "^4"
   
   node-pre-gyp@^0.11.0:
     version "0.11.0"
@@ -2331,6 +2412,11 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/shebang-regex/-/shebang-regex-1.0.0.tgz#da42f49740c0b42db2ca9728571cb190c98efea3"
     integrity sha1-2kL0l0DAtC2yypcoVxyxkMmO/qM=
   
+  shellwords@^0.1.1:
+    version "0.1.1"
+    resolved "https://registry.yarnpkg.com/shellwords/-/shellwords-0.1.1.tgz#d6b9181c1a48d397324c84871efbcfc73fc0654b"
+    integrity sha512-vFwSUfQvqybiICwZY5+DAWIPLKsWO31Q91JSKl3UYv+K5c2QRPzn0qzec6QPu1Qc9eHYItiP3NdJqNVqetYAww==
+  
   signal-exit@^3.0.0:
     version "3.0.2"
     resolved "https://registry.yarnpkg.com/signal-exit/-/signal-exit-3.0.2.tgz#b5fdc08f1287ea1178628e415e25132b73646c6d"
@@ -2350,7 +2436,7 @@ Lockfile:
     dependencies:
       hoek "4.x.x"
   
-  source-map-support@^0.5.1:
+  source-map-support@^0.5.1, source-map-support@^0.5.6:
     version "0.5.12"
     resolved "https://registry.yarnpkg.com/source-map-support/-/source-map-support-0.5.12.tgz#b4f3b10d51857a5af0138d3ce8003b201613d599"
     integrity sha512-4h2Pbvyy15EE02G+JOZpUCmqWJuqrs+sEkzewTm++BPi7Hvn/HwcqLAcNxYAyI0x13CpPPn+kMjl+hplXMHITQ==
@@ -2587,6 +2673,11 @@ Lockfile:
       psl "^1.1.24"
       punycode "^1.4.1"
   
+  tree-kill@^1.2.0:
+    version "1.2.1"
+    resolved "https://registry.yarnpkg.com/tree-kill/-/tree-kill-1.2.1.tgz#5398f374e2f292b9dcc7b2e71e30a5c3bb6c743a"
+    integrity sha512-4hjqbObwlh2dLyW4tcz0Ymw0ggoaVDMveUB9w8kFSQScdRLo0gxO9J7WFcUBo+W3C1TLdFIEwNOWebgZZ0RH9Q==
+  
   ts-invariant@^0.3.2:
     version "0.3.3"
     resolved "https://registry.yarnpkg.com/ts-invariant/-/ts-invariant-0.3.3.tgz#b5742b1885ecf9e29c31a750307480f045ec0b16"
@@ -2600,6 +2691,17 @@ Lockfile:
     integrity sha512-PTAAn8lJPEdRBJJEs4ig6MVZWfO12yrFzV7YaPslmyhG7+4MA279y4BXT3f72gXeVl0mC1aAWq2rMX4eKTWU/Q==
     dependencies:
       tslib "^1.9.3"
+  
+  ts-node@^8.2.0:
+    version "8.2.0"
+    resolved "https://registry.yarnpkg.com/ts-node/-/ts-node-8.2.0.tgz#4a89754b00560bb24cd54526e1685fa38c45f240"
+    integrity sha512-m8XQwUurkbYqXrKqr3WHCW310utRNvV5OnRVeISeea7LoCWVcdfeB/Ntl8JYWFh+WRoUAdBgESrzKochQt7sMw==
+    dependencies:
+      arg "^4.1.0"
+      diff "^4.0.1"
+      make-error "^1.1.1"
+      source-map-support "^0.5.6"
+      yn "^3.0.0"
   
   tslib@^1.9.0, tslib@^1.9.3:
     version "1.9.3"
@@ -2650,6 +2752,11 @@ Lockfile:
       xml2js "^0.4.17"
       yargonaut "^1.1.2"
       yargs "^13.2.1"
+  
+  typescript@^3.4.5:
+    version "3.4.5"
+    resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.4.5.tgz#2d2618d10bb566572b8d7aad5180d84257d70a99"
+    integrity sha512-YycBxUb49UUhdNMU5aJ7z5Ej2XGmaIBL0x34vZ82fn3hGvD+bgrMrVDpatgz2f7YxUMJxMkbWxJZeAvDxVe7Vw==
   
   uglify-js@^2.6:
     version "2.8.29"
@@ -2757,7 +2864,7 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/which-module/-/which-module-2.0.0.tgz#d9ef07dce77b9902b8a3a8fa4b31c3e3f7e6e87a"
     integrity sha1-2e8H3Od7mQK4o6j6SzHD4/fm6Ho=
   
-  which@^1.2.9:
+  which@^1.2.9, which@^1.3.0:
     version "1.3.1"
     resolved "https://registry.yarnpkg.com/which/-/which-1.3.1.tgz#a45043d54f5805316da8d62f9f50918d3da70b0a"
     integrity sha512-HxJdYWq1MTIQbJ3nw0cqssHoTNU267KlrDuGZ1WYlxDStUtKUhOaJmh112/TZmHxxUfuJqPXSOm7tDyas0OSIQ==
@@ -2916,6 +3023,11 @@ Lockfile:
       cliui "^2.1.0"
       decamelize "^1.0.0"
       window-size "0.1.0"
+  
+  yn@^3.0.0:
+    version "3.1.0"
+    resolved "https://registry.yarnpkg.com/yn/-/yn-3.1.0.tgz#fcbe2db63610361afcc5eb9e0ac91e976d046114"
+    integrity sha512-kKfnnYkbTfrAdd0xICNFw7Atm8nKpLcLv9AZGEt+kczL/WQVai4e2V6ZN8U/O+iI6WrNuJjNNOyu4zfhl9D3Hg==
   
   zen-observable-ts@^0.8.18:
     version "0.8.18"

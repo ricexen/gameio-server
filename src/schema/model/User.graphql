@@ -10,3 +10,7 @@ type UserRegistered {
   id: String
   username: String
 }
+
+type UserLoged {
+  token: String
+}

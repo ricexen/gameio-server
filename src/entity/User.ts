@@ -6,20 +6,29 @@ export class User {
   @PrimaryGeneratedColumn()
   id: string;
 
-  @Column()
+  @Column({ unique: true })
   username: string;
 
   @Column()
   password: string;
 
-  @Column()
-  name: string;
+  @Column({ nullable: true })
+  name?: string;
 
   @Column()
   email: string;
 
+  @Column({ nullable: true })
+  phone?: string;
+
+  @Column({ nullable: true })
+  sessionToken?: string = '';
+
   @Column()
-  phone: string;
+  acceptTerms: boolean = false;
+
+  @Column({ nullable: true })
+  active: boolean = false;
 
 
 }

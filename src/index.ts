@@ -1,6 +1,7 @@
 import { bootstrap } from 'vesper';
 import { UserController } from './controller/UserController';
 import { User } from './entity/User';
+import { getManager } from 'typeorm';
 
 const port = 3000;
 
@@ -10,7 +11,7 @@ bootstrap({
   entities: [User],
   schemas: [
     `${__dirname}/schema/**/*.graphql`,
-  ]
+  ],
 })
   .then(() => {
     console.log("Your app is up and running on http://localhost:3000.");

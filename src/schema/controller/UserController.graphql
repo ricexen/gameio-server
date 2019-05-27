@@ -4,12 +4,12 @@ type Query {
 }
 
 type Mutation {
-  login(username: String!, password: String!): User
+  login(username: String!, password: String!): UserLoged
   register(
     email: String!, 
     password: String!, 
-    confirm_password: String!, 
-    accept_terms: Boolean!, 
+    confirmPassword: String!, 
+    acceptTerms: Boolean!, 
     phone: String, 
     username: String,
     name: String
